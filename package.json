@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
     "serverless-finch": "^4.0.4"
   }
 }
