@@ -1,13 +1,39 @@
 service: servicem8-online-booking
-frameworkVersion: '3'
+frameworkVersion: "3"
+
+plugins:
+  - serverless-finch
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs20.x
+  profile: personal
+  stage: dev
+  region: ap-southeast-2
+  logRetentionInDays: 7
+
+  environment:
+    test: ${param:test}
+
+params:
+  default:
+    test: bleh-${sls:stage}
+  dev:
+    test: blah
+  prod:
+    test: blay
+
+custom:
+  client:
+    bucketName: servicem8-online-booking
+    objectHeaders:
+      index.html:
+        - name: Cache-Control
+          value: no-cache
 
 functions:
   api:
-    handler: index.handler
+    handler: api/index.handler
     events:
       - httpApi:
           path: /
