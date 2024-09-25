@@ -16,10 +16,10 @@ provider:
     test: ${param:test}
     apiKey: ${self:custom.secrets.apiKey} # just testing.
 
-  package:
-    patterns:
-      - "!secrets.yaml"
-      - "!client/**" # Need to check that serverless-finch still deploys the static client, but exclude from serverless.
+package:
+  patterns:
+    - "!secrets.yaml"
+    - "!client/**" # Need to check that serverless-finch still deploys the static client, but exclude from serverless.
 
 params:
   default:
