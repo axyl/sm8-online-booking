@@ -3,6 +3,7 @@ frameworkVersion: "3"
 
 plugins:
   - serverless-finch
+  - serverless-offline
 
 provider:
   name: aws
@@ -18,16 +19,16 @@ provider:
 
 package:
   patterns:
-    - "!secrets.yaml"
+    - "!secrets.yml"
     - "!client/**" # Need to check that serverless-finch still deploys the static client, but exclude from serverless.
 
 params:
   default:
     test: bleh-${sls:stage}
   dev:
-    test: blah
+    test: blah-${sls:stage}
   prod:
-    test: blay
+    test: blay-${sls:stage}
 
 custom:
   client: # config for serverless-finch to deploy the client to s3.
@@ -36,6 +37,8 @@ custom:
       index.html:
         - name: Cache-Control
           value: no-cache
+  serverless-offline:
+    httpPort: 4000
   # Load the parameters from the secrets.yml file, which isn't included in git.
   secrets: ${file(secrets.yml):${sls:stage}}
 
@@ -45,4 +48,11 @@ functions:
     events:
       - httpApi:
           path: /
+          method: get
+
+  test:
+    handler: api/index.test
+    events:
+      - httpApi:
+          path: /test/{id}
           method: get

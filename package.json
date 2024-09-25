@@ -1,9 +1,10 @@
 {
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "serverless-finch": "^4.0.4"
+    "serverless-finch": "^4.0.4",
+    "serverless-offline": "^14.3.2"
   },
   "scripts": {
-    "buildclient": "npx @11ty/eleventy"
+    "servelocalclient": "set stage=local& npx @11ty/eleventy --serve"
   }
 }
