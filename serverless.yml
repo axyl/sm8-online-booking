@@ -4,18 +4,22 @@ frameworkVersion: "3"
 plugins:
   - serverless-finch
 
-# Need to ignore the client folder.!!!
-
 provider:
   name: aws
   runtime: nodejs20.x
   profile: personal
   stage: dev
-  region: ap-southeast-2
+  region: ap-southeast-2 # set to your desired region
   logRetentionInDays: 7
 
   environment:
     test: ${param:test}
+    apiKey: ${self:custom.secrets.apiKey} # just testing.
+
+  package:
+    patterns:
+      - "!secrets.yaml"
+      - "!client/**" # Need to check that serverless-finch still deploys the static client, but exclude from serverless.
 
 params:
   default:
@@ -26,12 +30,14 @@ params:
     test: blay
 
 custom:
-  client:
+  client: # config for serverless-finch to deploy the client to s3.
     bucketName: servicem8-online-booking
     objectHeaders:
       index.html:
         - name: Cache-Control
           value: no-cache
+  # Load the parameters from the secrets.yml file, which isn't included in git.
+  secrets: ${file(secrets.yml):${sls:stage}}
 
 functions:
   api:
