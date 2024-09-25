@@ -6,7 +6,7 @@ document
     const phone = document.getElementById("phone").value;
     const suburb = document.getElementById("suburb").value;
     console.log("Base URL from config file is {{apiBaseURL}}");
-    const res = await fetch("{% APIBaseURL %}/step1", {
+    const res = await fetch("{{apiBaseURL}}/step1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

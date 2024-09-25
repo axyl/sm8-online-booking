@@ -1,8 +1,9 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addShortcode("APIBaseURL", function () {
+  /*  eleventyConfig.addShortcode("APIBaseURL", function () {   // Not using shortcode for this anymore.
+
     return "localhost:4000";
     //    return process.env.URL_BASE;
-  });
+  }); */
   //  eleventyConfig.setTemplateFormats(["html", "css", "js", "njk"]);
 
   eleventyConfig.addPassthroughCopy({ "client/css": "css" }); // Copy CSS folder contents to dist css

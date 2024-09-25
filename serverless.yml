@@ -17,6 +17,14 @@ provider:
     test: ${param:test}
     apiKey: ${self:custom.secrets.apiKey} # just testing.
 
+  httpApi:
+    payload: "2.0" # Probably default by now...?
+    cors:
+      allowedOrigins:
+        - http://localhost:8080 # Eleventy local server.
+      allowedHeaders:
+        - Content-Type # SErverless Offline seems to need this defined???
+
 package:
   patterns:
     - "!secrets.yml"
@@ -38,7 +46,7 @@ custom:
         - name: Cache-Control
           value: no-cache
   serverless-offline:
-    httpPort: 4000
+    httpPort: 4000 # Local API Server listening port.
   # Load the parameters from the secrets.yml file, which isn't included in git.
   secrets: ${file(secrets.yml):${sls:stage}}
 
@@ -56,3 +64,11 @@ functions:
       - httpApi:
           path: /test/{id}
           method: get
+
+  step1:
+    handler: api/index.step1
+    description: Received data for someone starting a new booking.
+    events:
+      - httpApi:
+          path: /step1
+          method: POST
