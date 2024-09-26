@@ -23,7 +23,7 @@ provider:
       allowedOrigins:
         - http://localhost:8080 # Eleventy local server.
       allowedHeaders:
-        - Content-Type # SErverless Offline seems to need this defined???
+        - Content-Type # SErverless Offline seems to need this defined???  aws doesn't, if you're happy with defaults
 
 package:
   patterns:
