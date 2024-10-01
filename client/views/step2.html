@@ -6,34 +6,53 @@ permalink: /step2.html
 
 <form id="step2">
   <fieldset class="flow">
-    <legend>Your Details</legend>
-    <label for="name">Name</label>
+    <legend>Great! What do you need us to do?</legend>
+    <label for="issue">What's Bugging You?</label>
+    <select
+      name="issue"
+      id="issue"
+      class="w-full"
+      placeholder="Cockroaches"
+      required
+    >
+      <option>Cockroaches</option>
+      <option>Termites</option>
+      <option>Pest Inspection</option>
+      <option>Other</option>
+    </select>
+    <label for="buildingType">Your Place is</label>
+    <select
+      multiple
+      name="buildingType"
+      id="buildingType"
+      class="w-full"
+      placeholder=""
+      required
+    >
+      <optgroup label="House">
+        <option>House</option>
+        <option>Granny Flat</option>
+        <option>Shed</option>
+      </optgroup>
+      <option>Unit</option>
+      <optgroup label="Apartment">
+        <option>1 Bed Room</option>
+        <option>2 Bed Room</option>
+        <option>3 Bed Room</option>
+        <option>4 Bed Room or more</option>
+      </optgroup>
+    </select>
+    <button class="w-full" id="getCostEstimate">Estimate Cost</button>
+    <label for="costEstimate">Cost Estimate</label>
     <input
       class="w-full"
-      placeholder="Megan"
-      required
+      placeholder="$0.00"
       type="text"
-      id="name"
-      name="name"
+      id="costEstimate"
+      name="costEstimate"
+      readonly
     />
-    <label for="phone">Phone Number</label>
-    <input
-      class="w-full"
-      placeholder="0412 345 678"
-      required
-      type="tel"
-      id="phone"
-      name="phone"
-    />
-    <label for="suburb">Suburb</label>
-    <input
-      class="w-full"
-      placeholder="Burleigh Heads"
-      required
-      type="text"
-      id="suburb"
-      name="suburb"
-    />
-    <button class="w-full" type="submit">Next Page</button>
+    <button class="w-full" type="submit">Find a Time</button>
   </fieldset>
 </form>
+<script src="js/step2.js"></script>

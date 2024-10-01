@@ -1,3 +1,8 @@
+/*
+{% comment %}
+The apiBaseURL will get replaced by the correct URL when eleventy compiles the site.
+{% endcomment %}
+*/
 document
   .getElementById("step1")
   .addEventListener("submit", async function (evt) {
